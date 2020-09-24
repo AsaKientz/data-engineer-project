@@ -1,0 +1,184 @@
+Table movie as M {
+  id int [pk, increment]
+  imdb_id int
+  title varchar [not null]
+  tagline varchar
+  overview varchar
+  homepage varchar
+  poster_path varchar
+  collection_id int [ref: > Col.id]
+  original_langauge_id int [ref: - LC.id]
+  original_title varchar
+  runtime int
+  budget bigint
+  revenue bigint
+  status_id int [ref: - S.id]
+  release_date date
+  is_adult boolean
+  is_video boolean
+  created_at datetime
+  updated_at datetime
+}
+
+Table genre as G {
+  id int [pk]
+  name varchar [not null]
+  created_at datetime
+  updated_at datetime
+}
+
+Table movie_genre {
+  id_movie int [ref: > MoId.tmdb_id]
+  id_genre int [ref: > G.id]
+  created_at datetime
+  updated_at datetime
+}
+
+Table spoken_language as SL {
+  id int [pk]
+  spoken_language_id int [ref: - LC.id]
+  name varchar [not null]
+  created_at datetime
+  updated_at datetime
+}
+
+Table movie_spoken_language {
+  id_movie int [ref: > MoId.tmdb_id]
+  id_spoken_language int [ref: > SL.id]
+  created_at datetime
+  updated_at datetime
+}
+
+table language_code as LC {
+  id int [pk]
+  language_code varchar(2) [not null]
+  created_at datetime
+  updated_at datetime
+}
+
+Table collection as Col {
+  id int [pk]
+  name varchar [not null]
+  poster_path varchar
+  backdrop_path varchar
+  created_at datetime
+  updated_at datetime
+}
+
+Table status as S {
+  id int [pk]
+  status varchar [not null]
+  created_at datetime
+  updated_at datetime
+}
+
+Table production_company as PComp {
+  id int [pk]
+  name varchar [not null]
+  created_at datetime
+  updated_at datetime
+}
+
+Table movie_production_company {
+  id_movie int [ref: > MoId.tmdb_id]
+  id_production_company int [ref: > PComp.id]
+  created_at datetime
+  updated_at datetime
+}
+
+Table production_country as PCount {
+  id int [pk]
+  country_code varchar(2)
+  name varchar [not null]
+  created_at datetime
+  updated_at datetime
+}
+
+Table movie_production_country {
+  id_movie int [ref: > MoId.tmdb_id]
+  id_production_country int [ref: > PCount.id]
+  created_at datetime
+  updated_at datetime
+}
+
+Table company_member as CM {
+  id int [pk]
+  name varchar [not null]
+  gender int
+  profile_path varchar
+  created_at datetime
+  updated_at datetime
+}
+
+Table crew_dept as CD {
+  id int [pk]
+  name varchar [not null]
+  created_at datetime
+  updated_at datetime
+}
+Table crew_dept_job as CDJ {
+  id int [pk]
+  id_crew_dept int [ref: > CD.id]
+  name varchar [not null]
+  created_at datetime
+  updated_at datetime
+}
+
+Table crew {
+  id int [pk]
+  credit_id varchar [not null]
+  movie_id int [ref: > MoId.id]
+  crew_dept_job_id int [ref: - CDJ.id]
+  company_member_id int [ref: - CM.id]
+  created_at datetime
+  updated_at datetime
+}
+
+Table cast {
+  id int [pk]
+  credit_id varchar
+  movie_id int [ref: > MoId.id]
+  character varchar [not null]
+  company_member_id int [ref: - CM.id]
+  cast_id int
+  order int
+  created_at datetime
+  updated_at datetime
+}
+
+Table keyword as Kw {
+  id int [pk]
+  name varchar [not null]
+  created_at datetime
+  updated_at datetime
+}
+
+Table movie_keyword {
+  id_movie int [ref: > MoId.tmdb_id]
+  id_keyword int [ref: > Kw.id]
+  created_at datetime
+  updated_at datetime
+}
+
+Table movie_id as MoId {
+  id int [pk]
+  imdb_id int [not null]
+  tmdb_id int [ref: - M.id]
+  created_at datetime
+  updated_at datetime
+}
+
+Table user as U {
+  id int [pk]
+  created_at datetime
+  updated_at datetime
+}
+
+Table user_rating {
+  id_user int [ref: > U.id]
+  id_movie int [ref: > MoId.id]
+  rating float [not null]
+  rating_timestamp datetime
+  created_at datetime
+  updated_at datetime
+}
