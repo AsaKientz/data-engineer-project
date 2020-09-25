@@ -28,7 +28,7 @@ Table genre as G {
 }
 
 Table movie_genre {
-  id_movie int [ref: > MoId.tmdb_id]
+  id_movie int [ref: > M.id]
   id_genre int [ref: > G.id]
   created_at datetime
   updated_at datetime
@@ -43,7 +43,7 @@ Table spoken_language as SL {
 }
 
 Table movie_spoken_language {
-  id_movie int [ref: > MoId.tmdb_id]
+  id_movie int [ref: > M.id]
   id_spoken_language int [ref: > SL.id]
   created_at datetime
   updated_at datetime
@@ -80,7 +80,7 @@ Table production_company as PComp {
 }
 
 Table movie_production_company {
-  id_movie int [ref: > MoId.tmdb_id]
+  id_movie int [ref: > M.id]
   id_production_company int [ref: > PComp.id]
   created_at datetime
   updated_at datetime
@@ -95,7 +95,7 @@ Table production_country as PCount {
 }
 
 Table movie_production_country {
-  id_movie int [ref: > MoId.tmdb_id]
+  id_movie int [ref: > M.id]
   id_production_country int [ref: > PCount.id]
   created_at datetime
   updated_at datetime
@@ -127,7 +127,7 @@ Table crew_dept_job as CDJ {
 Table crew {
   id int [pk]
   credit_id varchar [not null]
-  movie_id int [ref: > MoId.id]
+  movie_id int [ref: > M.id]
   crew_dept_job_id int [ref: - CDJ.id]
   company_member_id int [ref: - CM.id]
   created_at datetime
@@ -137,7 +137,7 @@ Table crew {
 Table cast {
   id int [pk]
   credit_id varchar
-  movie_id int [ref: > MoId.id]
+  movie_id int [ref: > M.id]
   character varchar [not null]
   company_member_id int [ref: - CM.id]
   cast_id int
@@ -154,7 +154,7 @@ Table keyword as Kw {
 }
 
 Table movie_keyword {
-  id_movie int [ref: > MoId.tmdb_id]
+  id_movie int [ref: > M.id]
   id_keyword int [ref: > Kw.id]
   created_at datetime
   updated_at datetime
