@@ -14,6 +14,9 @@ Table movie as M {
   revenue bigint
   status_id int [ref: - S.id]
   release_date date
+  popularity float
+  vote_average float
+  vote_count int
   is_adult boolean
   is_video boolean
   created_at datetime
