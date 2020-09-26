@@ -7,7 +7,7 @@ Table movie as M {
   homepage varchar
   poster_path varchar
   collection_id int [ref: > Col.id]
-  original_langauge_id int [ref: - LC.id]
+  original_langauge_id int [ref: - L.id]
   original_title varchar
   runtime int
   budget bigint
@@ -37,9 +37,9 @@ Table movie_genre {
   updated_at datetime
 }
 
-Table spoken_language as SL {
+Table language as L {
   id int [pk]
-  spoken_language_id int [ref: - LC.id]
+  iso_639_1 int
   name varchar [not null]
   created_at datetime
   updated_at datetime
@@ -47,14 +47,7 @@ Table spoken_language as SL {
 
 Table movie_spoken_language {
   id_movie int [ref: > M.id]
-  id_spoken_language int [ref: > SL.id]
-  created_at datetime
-  updated_at datetime
-}
-
-table language_code as LC {
-  id int [pk]
-  language_code varchar(2) [not null]
+  id_language int [ref: > L.id]
   created_at datetime
   updated_at datetime
 }
@@ -91,7 +84,7 @@ Table movie_production_company {
 
 Table production_country as PCount {
   id int [pk]
-  country_code varchar(2)
+  iso_3166_1 varchar(2)
   name varchar [not null]
   created_at datetime
   updated_at datetime
