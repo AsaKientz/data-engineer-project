@@ -13,11 +13,12 @@ The Data Model is fairly well normalized, and takes advantage of two simplificat
 
 ## Implementation
 
-The implementation code is written in **Python**.
+The implementation code is written in **Python**.  **PostgreSQL** and psycopg2 are leveraged to extract the approriate fields for for the database.
 
-**PostgreSQL** and psycopg2 are leveraged to extract the approriate fields for for the database.
+The 'movies_metatdata.csv' raw data file has some data integrity issues - three records have incorrect (additional) line breaks.  Error handling should be considered to deal with this type of issue, but disucssing the root cause with the data provider should also be a part of the data integrity solution.
 
 Both the ingestion and the API files could be structures as Classes, given more time to configure and test.
+
 No unit testing was set up for these scripts; that is also something that could be added fairly easily given more time.
 
 ** Caveats and Notes:
@@ -35,6 +36,7 @@ Storage via S3 is a simple and straightforward solution.  It's cost effective an
 **Snowflake** could also be a part of this solution would would fit into the design well.  It uses S3 for storage and permits multi-cluster virtual warehouses for compute activities to allow autoscaling.  This might be excessive for the scope of this assignment, but a general model it could a a useful component of the overall solution.  Materialized Views (MVs) could be configured in Snowflake for the specified reporting needs using the SQL query provided in 
 
 Data serving: Snowflake's MVs integrate with **Looker** which could allow end users to dovetail this data stream into their existing toolbox.  Snowflake also has access control privleges with MVs, if sensitive material were to be involved.
+If Looker wasn't a desired solution, a Flask app could be written for simple web-based access.
 
 A scheduled event tool to trigger the data ingestion code, like **AWS Lambda**, could be configured to run monthly after the expected new files are delivered.  Since the event would trigger infrequently, it should be possible to run it during off-peak times.
 
