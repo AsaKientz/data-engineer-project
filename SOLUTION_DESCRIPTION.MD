@@ -13,12 +13,12 @@ The Data Model is fairly well normalized, and takes advantage of two simplificat
 
 ## Implementation
 
-The implementation code is written in Python.
+The implementation code is written in **Python**.
 
-PostgreSQL is leveraged to extract the approriate fields for 
+**PostgreSQL** and psycopg2 are leveraged to extract the approriate fields for for the database.
 
-The input for the program will be the raw data (CSV files) in The Movies Dataset.
-The output for the program will be one or more files that can be used to hydrate the data model. 
+Both the ingestion and the API files could be structures as Classes, given more time to configure and test.
+No unit testing was set up for these scripts; that is also something that could be added fairly easily given more time.
 
 ** Caveats and Notes:
 
