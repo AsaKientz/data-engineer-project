@@ -13,7 +13,9 @@ The Data Model is fairly well normalized, and takes advantage of two simplificat
 
 ## Implementation
 
-The implementation code is written in **Python**.  **PostgreSQL** and psycopg2 are leveraged to extract the approriate fields for for the database.
+The implementation code is written in **Python**.  The [src/ingest.py](src) file contains the code to extract and load the raw data, and the [src/api_queries.py](src) file contains the API queries for the pre-identified reports of interest.
+
+**PostgreSQL** and psycopg2 are leveraged to extract the approriate fields for for the database.
 
 The 'movies_metatdata.csv' raw data file has some data integrity issues - three records have incorrect (additional) line breaks.  Error handling should be considered to deal with this type of issue, but disucssing the root cause with the data provider should also be a part of the data integrity solution.
 
