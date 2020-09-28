@@ -3,7 +3,7 @@
 
 
 ## Data Model 
-The [Data Model](data_model/DATAMODEL.pdf), generated via dbdiagram.io and saved as a .pdf, is located in the [data_model](data_model) folder. A text file that can be used to replicate the [schema](data_model/data_model_code.txt) is also present.
+The [Data Model](data_model/DataModel.pdf), generated via dbdiagram.io and saved as a .pdf, is located in the [data_model](data_model) folder. A text file that can be used to replicate the [schema](data_model/data_model_code.txt) is also present.
 
 The Data Model is fairly well normalized, and takes advantage of two simplifications of note:
 - The ISO Language code appears in both the spoken language JSON-like raw field `spoken_languages` as well as the `original_language` field.  Relationships to a single 'language' table for both of these should exist.
